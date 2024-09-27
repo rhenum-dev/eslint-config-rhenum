@@ -1,0 +1,18 @@
+{
+  "name": "@company/configs",
+  "version": "1.0.0",
+  "description": "Company-wide configuration files for ESLint, Prettier, and TypeScript",
+  "main": "postinstall.js",
+  "scripts": {
+    "postinstall": "node postinstall.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/company-configs.git"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
