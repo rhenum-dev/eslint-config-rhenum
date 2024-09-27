@@ -1,18 +1,18 @@
 {
-  "name": "@company/configs",
-  "version": "1.0.0",
+  "name": "rhenum-configs",
+  "version": "1.0.3",
   "description": "Company-wide configuration files for ESLint, Prettier, and TypeScript",
-  "main": "postinstall.js",
-  "scripts": {
-    "postinstall": "node postinstall.js"
+  "main": "index.js",
+  "bin": {
+    "rhenum-configs": "index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/company-configs.git"
+    "url": "git+https://github.com/rhenum-dev/eslint-config-rhenum.git"
   },
-  "author": "Your Name",
+  "author": "Rhenum",
   "license": "MIT",
   "dependencies": {
-    "inquirer": "^8.2.0"
+    "inquirer": "^11.0.2"
   }
 }
