@@ -10,6 +10,9 @@ const configFiles = {
   tsconfig: "tsconfig.json",
 };
 
+const repoUrl =
+  "https://raw.githubusercontent.com/rhenum-dev/eslint-config-rhenum/refs/heads/dev/configs/overwrite";
+
 const questions = [
   {
     type: "list",
@@ -24,12 +27,7 @@ inquirer.prompt(questions).then((answers) => {
 
   Object.entries(configFiles).forEach(([key, file]) => {
     const filePath = path.join(process.cwd(), file);
-    const repoConfigPath = path.join(
-      __dirname,
-      "configs",
-      configAction.toLowerCase(),
-      file
-    );
+    const repoConfigPath = path.join(__dirname, "configs", "overwrite", file);
 
     // Remove existing config file if it exists
     if (fs.existsSync(filePath)) {
@@ -43,10 +41,20 @@ inquirer.prompt(questions).then((answers) => {
       fs.writeFileSync(filePath, configContent, "utf8");
       console.log(`${file} has been copied/overwritten!`);
     } else if (configAction === "Extend") {
-      // Create new config file to extend configurations
-      const extendConfig = { extends: `./configs/extend/${file}` };
-      fs.writeFileSync(filePath, JSON.stringify(extendConfig, null, 2), "utf8");
-      console.log(`${file} has been created to extend the configuration!`);
+      if (file === "tsconfig.json") {
+        console.log("repoConfigPath", repoConfigPath);
+        const configContent = fs.readFileSync(repoConfigPath, "utf8");
+        fs.writeFileSync(filePath, configContent, "utf8");
+      } else {
+        // Create new config file to extend configurations
+        const extendConfig = { extends: `${repoUrl}/${file}` };
+        fs.writeFileSync(
+          filePath,
+          JSON.stringify(extendConfig, null, 2),
+          "utf8"
+        );
+        console.log(`${file} has been created to extend the configuration!`);
+      }
     }
   });
 });

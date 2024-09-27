@@ -13,9 +13,13 @@
     "create-rhenum-config": "./create-rhenum-config.js"
   },
   "scripts": {
-    "start": "node create-rhenum-config.js"
+    "start": "node ./create-rhenum-config.js",
+    "test": "echo 'No tests specified' && exit 0"
   },
   "dependencies": {
     "inquirer": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
