@@ -1,5 +1,5 @@
 {
   "extends": [
-    "https://raw.githubusercontent.com/your-repo/your-configs/main/.eslintrc.json"
+    "https://raw.githubusercontent.com/rhenum-dev/eslint-config-rhenum/refs/heads/dev/configs/overwrite/.eslintrc.json?token=GHSAT0AAAAAACX3OFY7F52ZHKLN57N3GPV2ZXWZ3LQ"
   ]
 }

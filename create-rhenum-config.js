@@ -15,7 +15,7 @@ const questions = [
     type: "list",
     name: "configAction",
     message: "Do you want to copy/overwrite or extend the configurations?",
-    choices: ["Copy/Overwrite", "Extend"],
+    choices: ["Overwrite", "Extend"],
   },
 ];
 
@@ -31,46 +31,22 @@ inquirer.prompt(questions).then((answers) => {
       file
     );
 
-    if (configAction === "Copy/Overwrite") {
+    // Remove existing config file if it exists
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      console.log(`${file} has been removed from the project!`);
+    }
+
+    if (configAction === "Overwrite") {
       // Copy/overwrite config files from repo to the project directory
       const configContent = fs.readFileSync(repoConfigPath, "utf8");
       fs.writeFileSync(filePath, configContent, "utf8");
       console.log(`${file} has been copied/overwritten!`);
     } else if (configAction === "Extend") {
-      // Update config files to extend configurations
-      const extendConfig = JSON.parse(fs.readFileSync(repoConfigPath, "utf8"));
-
-      if (fs.existsSync(filePath)) {
-        const existingConfig = JSON.parse(fs.readFileSync(filePath, "utf8"));
-
-        if (file === ".prettierrc.json") {
-          Object.assign(existingConfig, extendConfig);
-        } else if (file === ".eslintrc.json") {
-          existingConfig.extends = existingConfig.extends || [];
-          if (typeof existingConfig.extends === "string") {
-            existingConfig.extends = [existingConfig.extends];
-          }
-          existingConfig.extends.push(`./configs/extend/${file}`);
-        } else if (file === "tsconfig.json") {
-          existingConfig.extends = `./configs/extend/${file}`;
-        }
-
-        fs.writeFileSync(
-          filePath,
-          JSON.stringify(existingConfig, null, 2),
-          "utf8"
-        );
-        console.log(`${file} has been updated to extend the configuration!`);
-      } else {
-        console.log(
-          `${file} does not exist. Creating and extending the configuration.`
-        );
-        fs.writeFileSync(
-          filePath,
-          JSON.stringify({ extends: `./configs/extend/${file}` }, null, 2),
-          "utf8"
-        );
-      }
+      // Create new config file to extend configurations
+      const extendConfig = { extends: `./configs/extend/${file}` };
+      fs.writeFileSync(filePath, JSON.stringify(extendConfig, null, 2), "utf8");
+      console.log(`${file} has been created to extend the configuration!`);
     }
   });
 });
