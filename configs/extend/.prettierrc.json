@@ -1,0 +1,3 @@
+{
+  "extends": "https://raw.githubusercontent.com/your-repo/your-configs/main/.prettierrc.json"
+}

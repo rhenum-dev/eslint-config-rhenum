@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "https://raw.githubusercontent.com/your-repo/your-configs/main/.eslintrc.json"
+  ]
+}

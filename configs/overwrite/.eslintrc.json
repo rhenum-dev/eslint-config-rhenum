@@ -1,11 +1,21 @@
 {
-  "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": ["next.config.js"],
-  "plugins": ["@typescript-eslint", "prettier"],
+  "ignorePatterns": [
+    "next.config.js"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
   "rules": {
     "jsx-quotes": "off",
     "react/react-in-jsx-scope": "off",
