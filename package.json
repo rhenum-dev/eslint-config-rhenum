@@ -1,6 +1,6 @@
 {
   "name": "rhenum-configs",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "author": "Rhenum",
   "license": "MIT",
   "description": "Company-wide configuration files for ESLint, Prettier, and TypeScript",
